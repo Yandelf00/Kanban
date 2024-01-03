@@ -1,15 +1,14 @@
 import Image from 'next/image'
-import { Switch, Phrase } from '@/components'
+import { Switch, Phrase, Navbar } from '@/components'
 
 
 export default function Home() {
   return (
-    <main className="">
-      <div className='text-[3rem]'>hello world</div>
-      <div className='text-[3rem] text-green-500 dark:text-red-500'>this is something else</div>
-      <Phrase/>
-      <Switch/>
-      
+    <main className="w-full">
+      <Navbar/>
+      <div className='mt-10'>
+        <Switch/>
+      </div>
     </main>
   )
 }
