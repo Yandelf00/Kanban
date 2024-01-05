@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Switch, Phrase, Navbar, Sidebar } from '@/components'
+import { Switch, Phrase, Navbar, Sidebar, Answitch } from '@/components'
 
 
 export default function Home() {
@@ -8,6 +8,7 @@ export default function Home() {
       <Navbar/>
       <div className='h-[100%] w-full bg-[rgba(244,247,253,255)] dark:bg-[rgba(34,35,46,255)]'>
         <Sidebar/>
+
         {/* <div className='mt-10'>
           <Switch/>
         </div> */}
