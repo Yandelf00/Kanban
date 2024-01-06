@@ -10,8 +10,9 @@ export default function Answitch() {
   
     // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {
-      setMounted(true)
-    }, [])
+      setMounted(true);
+      setToggle(theme === 'light'); 
+    }, []);
     
     if (!mounted) {
       return null
