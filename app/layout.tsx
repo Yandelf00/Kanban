@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Provider from '@/provider'
+import ReduxProvider from '@/store/provider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="en" className='h-full'>
       <body className='h-full'>
         <Provider>
-          {children}
+          <ReduxProvider>
+            {children}
+          </ReduxProvider>
         </Provider>
       </body>
     </html>

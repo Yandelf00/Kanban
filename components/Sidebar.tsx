@@ -1,13 +1,8 @@
 "use client"
-import React, { useState, useEffect} from 'react'
-import { useTheme } from 'next-themes'
-import { motion } from 'framer-motion'
+import React, { useState} from 'react'
 import { Answitch } from '.';
 
 export default function Sidebar() {
-    const [mounted, setMounted] = useState(false)
-    const [toggle, setToggle] = useState(false)
-    const { theme, setTheme } = useTheme()
     const [hide, setHide] = useState(true);
     function show(){
         setHide(prevHide => !prevHide);
