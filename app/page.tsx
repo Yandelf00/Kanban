@@ -1,21 +1,17 @@
 import Image from 'next/image'
-import { Switch, Phrase, Navbar, Sidebar, Answitch, Board } from '@/components'
+import { Switch, Phrase, Navbar, Sidebar, Navtwo, Slidtwo, Answitch, Board } from '@/components'
 
 
 export default function Home() {
   return (
-    <main className="w-full h-full overflow-y-hidden">
+    <main className="h-full w-full bg-[rgba(244,247,253,255)]  dark:bg-[rgba(32,33,44,255)] overflow-y-auto">
       <Navbar/>
-      <div className='h-[100%] w-full flex flex-row bg-[rgba(244,247,253,255)] dark:bg-[rgba(34,35,46,255)]'>
+      <div className='flex flex-row'>
         <Sidebar/>
-        <div>
-          <Board/>
-        </div>
-
-        {/* <div className='mt-10'>
-          <Switch/>
-        </div> */}
+        <div className='mt-[10rem]'>idk man</div>
       </div>
+
+      
     </main>
   )
 }
