@@ -286,7 +286,7 @@
     },
     {
       "name": "Marketing Plan",
-      "isActive" : false,
+      "isActive" : true,
       "columns": [
         {
           "name": "Todo",

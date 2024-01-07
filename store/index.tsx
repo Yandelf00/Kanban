@@ -29,26 +29,6 @@ const boardSlice = createSlice({
 })
 
 
-const counterSlice = createSlice({
-    name : 'counter',
-    initialState : {counter : 0 },
-    reducers : {
-        increment(state) {
-            if (state.counter!==null)
-            {
-                state.counter++;
-            }
-        },
-        decrement(state) {
-            if (state.counter!==null)
-            {
-                state.counter--;
-            }
-        }
-         
-    }
-})
-
 
 const store = configureStore({
     reducer: {

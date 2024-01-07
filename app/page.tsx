@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Switch, Phrase, Navbar, Sidebar, Navtwo, Slidtwo, Answitch, Board } from '@/components'
+import { Switch, Phrase, Navbar, Sidebar, Navtwo, Slidtwo, Answitch, Board, Columns } from '@/components'
 
 
 export default function Home() {
@@ -8,7 +8,9 @@ export default function Home() {
       <Navbar/>
       <div className='flex flex-row'>
         <Sidebar/>
-        <div className='mt-[10rem]'>idk man</div>
+        <div className='ml-[5rem] h-full mt-[7rem]'>
+          <Columns/>
+        </div>
       </div>
 
       
