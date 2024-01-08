@@ -9,6 +9,7 @@ import Slidtwo from "./Navtwo";
 import Columns from "./Columns";
 import Tasks from "./Tasks";
 import Bouton from "./Bouton";
+import TaskForm from "./TaskForm";
 export {
     Switch,
     Phrase,
@@ -20,5 +21,6 @@ export {
     Slidtwo,
     Columns,
     Tasks,
-    Bouton
+    Bouton,
+    TaskForm
 }
