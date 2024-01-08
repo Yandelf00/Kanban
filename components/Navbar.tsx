@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Bouton } from '.'
 export default function Navbar() {
   return (
     <div className='fixed top-0 z-50 w-full flex flex-row justify-between h-[5rem] bg-[rgba(255,255,255,255)] dark:bg-[rgba(43,44,55,255)]'>
@@ -11,7 +11,7 @@ export default function Navbar() {
             <h1 className='font-semibold mt-4 text-[1.2rem]'>Plateform launch</h1>
         </div>
         <div className='h-full w-1/5 flex justify-end mr-5 mt-4'>
-            <button className='mr-4 h-[3rem] w-[10rem] border-none text-white font-semibold bg-[rgba(99,95,199,255)] hover:bg-[rgb(146,143,232)] rounded-3xl '>+Add New Task</button>
+            <Bouton/>
             <div className='mt-3 cursor-pointer'>
             <svg width="5" height="20" xmlns="http://www.w3.org/2000/svg"><g fill="#828FA3" fillRule="evenodd"><circle cx="2.308" cy="2.308" r="2.308"/><circle cx="2.308" cy="10" r="2.308"/><circle cx="2.308" cy="17.692" r="2.308"/></g></svg>
             </div>

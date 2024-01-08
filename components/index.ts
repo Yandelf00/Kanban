@@ -8,6 +8,7 @@ import Navtwo from "./Navtwo";
 import Slidtwo from "./Navtwo";
 import Columns from "./Columns";
 import Tasks from "./Tasks";
+import Bouton from "./Bouton";
 export {
     Switch,
     Phrase,
@@ -18,5 +19,6 @@ export {
     Navtwo,
     Slidtwo,
     Columns,
-    Tasks
+    Tasks,
+    Bouton
 }
