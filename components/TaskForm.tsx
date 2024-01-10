@@ -1,8 +1,8 @@
 "use client"
 import React, {useState, useRef} from 'react'
 import { Tasks } from '.';
-import { useSelector } from 'react-redux';
-import { boardType, columnType } from '@/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { boardType, columnType, actions } from '@/store';
 import { title } from 'process';
 
 
@@ -14,10 +14,13 @@ export default function TaskForm() {
     const description = useRef<HTMLTextAreaElement>(null);
     const subtaskRefs = useRef<Array<HTMLInputElement|null>>([]);
     const selectRef = useRef<HTMLSelectElement>(null);
+    const dispatch = useDispatch()
 
     // if (subtaskRefs.current.length !== subTasks.num) {
     //     subtaskRefs.current = Array(subTasks.num).fill(null).map((_, index) => subtaskRefs.current[index] || null);
     // }
+    
+
     function addSubtasks(){
         const newId = subTasks.num + 1;
         setSubTasks((prevSubTasks) => {
@@ -45,10 +48,19 @@ export default function TaskForm() {
         });
         console.log(liste)
     } 
+
+    function addTask(){
+        dispatch(actions.addTask({
+            title: title.current?.value || '',
+            description: description.current?.value || '',
+            status: selectRef.current?.value || '',
+            subtasks : subTasks.tasks || []
+          }));
+    }
     return (
-        <div className='h-[90%] w-[90%] flex flex-col'>
+        <div className='h-[100%] w-[90%] flex flex-col'>
             <h1 className='font-bold text-[1.2rem]'>Add New Task</h1>
-            <div className='mt-5 flex flex-col'>
+            <div className='mt-4 flex flex-col'>
                 <label htmlFor="taskName" className="mb-2 text-black dark:text-white">
                     Title
                 </label>
@@ -57,46 +69,53 @@ export default function TaskForm() {
                 type="text"
                 id="taskName"
                 placeholder="e.g. Take coffee break"
-                className=" p-2 rounded-md focus:outline-none focus:border-blue-500"
+                className="focus:border-[rgba(99,95,199,255)] focus:outline-none transition-border ease-in-out duration-300
+                 p-2 border dark:border-[rgba(123,140,162,255)] dark:bg-[rgba(43,44,55,255)] mb-5 rounded-md "
                 />
-                <label htmlFor="longTextInput" className="mb-2 text-black dark:text-white">
+                <label htmlFor="longTextInput" className="mb-2 text-black dark:text-white ">
                     Description
                 </label>
-                <textarea ref={description} className='border dark:border-none border-black' 
+                <textarea ref={description} className='focus:border-[rgba(99,95,199,255)] focus:outline-none transition-border ease-in-out duration-300
+                p-2 border border-black rounded-md dark:border-[rgba(123,140,162,255)] dark:bg-[rgba(43,44,55,255)] mb-5' 
                 id="longTextInput" 
-                name="longInput" style={{ width: '100%', height: '100px' }}></textarea>
+                name="longInput" 
+                placeholder='e.g It is always good to take a break. This 15 minute break will recharge the batteries a little.' 
+                style={{ width: '100%', height: '140px' }}></textarea>
                 <label>
                     Subtasks
                 </label>
-                <div className='flex flex-col'>
+                <div className='flex flex-col mb-5'>
                     {subTasks.tasks.map((subtask, index) => (
                         <div key={subtask.id} className="flex items-center">
                         <input
                           type="text"
                           placeholder=''
-                          className="p-2 mt-2 rounded-md focus:outline-none focus:border-blue-500"
+                          className="p-2 mt-2 w-[100%] rounded-md focus:border-[rgba(99,95,199,255)] focus:outline-none transition-border ease-in-out duration-300
+                          border dark:border-[rgba(123,140,162,255)] dark:bg-[rgba(43,44,55,255)] "
                           ref={(inputRef) => (subtaskRefs.current[index] = inputRef)}
                         />
                         <button
                           type="button"
                           onClick={() => deleteSubtasks(subtask.id)}
-                          className="ml-2 p-2 bg-red-500 text-white rounded-md cursor-pointer"
+                          className="ml-2 pt-3 p-2 font-bold text-[1.3rem]   
+                          dark:text-[rgba(123,140,162,255)]  cursor-pointer"
                         >
-                          X
+                          x
                         </button>
                       </div>
                     ))}
                 </div>
-                <button onClick={addSubtasks}>add</button>
+                <button onClick={addSubtasks} className='mb-5 rounded-full font-bold h-[2.4rem] w-full dark:bg-white text-[rgba(99,95,199,255)] '>
+                    + Add New Subtask</button>
 
-                <label htmlFor="mySelect">Status</label>
-                <select ref={selectRef} id="mySelect" name="select">
+                <label htmlFor="mySelect" className='mb-2'>Status</label>
+                <select ref={selectRef} id="mySelect" name="select" className= 'mb-5 appearance-none focus:border-[rgba(99,95,199,255)] focus:outline-none transition-border ease-in-out duration-300 border h-[2.4rem] rounded-md hover:no-underline p-2 dark:border-[rgba(123,140,162,255)] dark:bg-[rgba(43,44,55,255)]'>
                     {activeBoard.columns.map((column:columnType)=>(
                         <option value={column.name}>{column.name}</option>
                     ))}
                 </select>
                 
-                <button onClick={Essai}>create task</button>
+                <button onClick={addTask} className='h-[2.4rem] font-bold dark:bg-[rgba(99,95,199,255)] rounded-full'>Create Task</button>
                 
 
 

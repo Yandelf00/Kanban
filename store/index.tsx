@@ -25,7 +25,15 @@ export type boardType = {
 const boardSlice = createSlice({
     name : 'boards',
     initialState : {boards : Data.boards as boardType[]},
-    reducers : {}
+    reducers : {
+        addTask : (state, action)=>{
+            const {title, description, subtasks, status} = action.payload;
+            const activeboard = state.boards.findIndex((board)=>board.isActive);
+            const newTask : taskType = {title, description, status, subtasks : subtasks||[]}
+            const column = state.boards[activeboard].columns.findIndex((column)=>column.name==status)
+            state.boards[activeboard].columns[column].tasks.push(newTask)
+        } 
+    }
 })
 
 

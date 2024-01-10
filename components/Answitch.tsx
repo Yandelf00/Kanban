@@ -10,6 +10,7 @@ export default function Answitch() {
   
     // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       setMounted(true);
       setToggle(theme === 'light'); 
     }, []);
