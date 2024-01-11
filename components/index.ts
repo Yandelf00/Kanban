@@ -10,6 +10,7 @@ import Columns from "./Columns";
 import Tasks from "./Tasks";
 import Bouton from "./Bouton";
 import TaskForm from "./TaskForm";
+import Task from "./Task";
 export {
     Switch,
     Phrase,
@@ -22,5 +23,6 @@ export {
     Columns,
     Tasks,
     Bouton,
-    TaskForm
+    TaskForm,
+    Task
 }

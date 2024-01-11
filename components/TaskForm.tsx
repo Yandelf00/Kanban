@@ -76,7 +76,7 @@ export default function TaskForm() {
                     Description
                 </label>
                 <textarea ref={description} className='focus:border-[rgba(99,95,199,255)] focus:outline-none transition-border ease-in-out duration-300
-                p-2 border border-black rounded-md dark:border-[rgba(123,140,162,255)] dark:bg-[rgba(43,44,55,255)] mb-5' 
+                p-2 border rounded-md dark:border-[rgba(123,140,162,255)] dark:bg-[rgba(43,44,55,255)] mb-5' 
                 id="longTextInput" 
                 name="longInput" 
                 placeholder='e.g It is always good to take a break. This 15 minute break will recharge the batteries a little.' 
@@ -98,15 +98,17 @@ export default function TaskForm() {
                           type="button"
                           onClick={() => deleteSubtasks(subtask.id)}
                           className="ml-2 pt-3 p-2 font-bold text-[1.3rem]   
-                          dark:text-[rgba(123,140,162,255)]  cursor-pointer"
+                          text-[rgba(123,140,162,255)]  cursor-pointer"
                         >
                           x
                         </button>
                       </div>
                     ))}
                 </div>
-                <button onClick={addSubtasks} className='mb-5 rounded-full font-bold h-[2.4rem] w-full dark:bg-white text-[rgba(99,95,199,255)] '>
-                    + Add New Subtask</button>
+                <button onClick={addSubtasks} className='mb-5 rounded-full dark:text-[rgba(99,95,199,255)] text-white bg-[rgba(99,95,199,255)]
+                font-bold h-[2.4rem] w-full dark:bg-white text-[rgba(99,95,199,255)] '>
+                    + Add New Subtask
+                </button>
 
                 <label htmlFor="mySelect" className='mb-2'>Status</label>
                 <select ref={selectRef} id="mySelect" name="select" className= 'mb-5 appearance-none focus:border-[rgba(99,95,199,255)] focus:outline-none transition-border ease-in-out duration-300 border h-[2.4rem] rounded-md hover:no-underline p-2 dark:border-[rgba(123,140,162,255)] dark:bg-[rgba(43,44,55,255)]'>
@@ -115,7 +117,7 @@ export default function TaskForm() {
                     ))}
                 </select>
                 
-                <button onClick={addTask} className='h-[2.4rem] font-bold dark:bg-[rgba(99,95,199,255)] rounded-full'>Create Task</button>
+                <button onClick={addTask} className='h-[2.4rem] font-bold bg-[rgba(99,95,199,255)] text-white rounded-full'>Create Task</button>
                 
 
 
