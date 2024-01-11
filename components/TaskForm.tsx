@@ -88,6 +88,7 @@ export default function TaskForm() {
                     {subTasks.tasks.map((subtask, index) => (
                         <div key={subtask.id} className="flex items-center">
                         <input
+                          key={subtask.id}
                           type="text"
                           placeholder=''
                           className="p-2 mt-2 w-[100%] rounded-md focus:border-[rgba(99,95,199,255)] focus:outline-none transition-border ease-in-out duration-300
@@ -95,6 +96,7 @@ export default function TaskForm() {
                           ref={(inputRef) => (subtaskRefs.current[index] = inputRef)}
                         />
                         <button
+                          key={subtask.id}
                           type="button"
                           onClick={() => deleteSubtasks(subtask.id)}
                           className="ml-2 pt-3 p-2 font-bold text-[1.3rem]   

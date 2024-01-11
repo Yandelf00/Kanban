@@ -32,6 +32,24 @@ const boardSlice = createSlice({
             const newTask : taskType = {title, description, status, subtasks : subtasks||[]}
             const column = state.boards[activeboard].columns.findIndex((column)=>column.name==status)
             state.boards[activeboard].columns[column].tasks.push(newTask)
+        },
+        changeCheckSubtasks : (state, action: PayloadAction<{ columnTitle: string, taskTitle: string, subtaskTitle: string }>)=>{
+            const {columnTitle, taskTitle, subtaskTitle} = action.payload;
+            const activeBoard = state.boards.findIndex((board : boardType)=> board.isActive === true);
+            const concernedColumn = state.boards[activeBoard].columns.findIndex((column : columnType)=>column.name===columnTitle);
+            const concernedTask = state.boards[activeBoard].columns[concernedColumn].tasks.findIndex((task:taskType)=>task.title===taskTitle)
+            const concernedSubTask = state.boards[activeBoard].columns[concernedColumn].tasks[concernedTask].subtasks.findIndex((subtask:subtaskType)=>subtask.title===subtaskTitle)
+            const check = state.boards[activeBoard].columns[concernedColumn].tasks[concernedTask].subtasks[concernedSubTask].isCompleted
+            state.boards[activeBoard].columns[concernedColumn].tasks[concernedTask].subtasks[concernedSubTask].isCompleted = !check;
+        },
+        changeColTask : (state, action)=>{
+            const {currentCol, nextCol, taskName} = action.payload;
+            const activeBoard = state.boards.findIndex((board:boardType)=>board.isActive===true);
+            const current = state.boards[activeBoard].columns.findIndex((column:columnType)=>column.name===currentCol);
+            const next = state.boards[activeBoard].columns.findIndex((column:columnType)=>column.name===nextCol);
+            const concernedTaskId = state.boards[activeBoard].columns[current].tasks.findIndex((task:taskType)=>task.title === taskName);
+            const concernedTask = state.boards[activeBoard].columns[current].tasks[concernedTaskId]
+            state.boards[activeBoard].columns[next].tasks.push(concernedTask);
         } 
     }
 })

@@ -11,6 +11,7 @@ import Tasks from "./Tasks";
 import Bouton from "./Bouton";
 import TaskForm from "./TaskForm";
 import Task from "./Task";
+import Subtask from "./Subtask";
 export {
     Switch,
     Phrase,
@@ -24,5 +25,6 @@ export {
     Tasks,
     Bouton,
     TaskForm,
-    Task
+    Task,
+    Subtask
 }
