@@ -25,7 +25,8 @@ export default function Task(props : taskProps) {
         setIsOpen(!isOpen)
         dispatch(actions.changeColTask({
             currentCol : props.column,
-            nextCol :'Todo'
+            nextCol :selectRef.current?.value,
+            taskName : props.title
         }))
     }
     return (
