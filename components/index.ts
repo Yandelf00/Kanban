@@ -12,6 +12,7 @@ import Bouton from "./Bouton";
 import TaskForm from "./TaskForm";
 import Task from "./Task";
 import Subtask from "./Subtask";
+import CreateBoard from "./CreateBoard";
 export {
     Switch,
     Phrase,
@@ -26,5 +27,6 @@ export {
     Bouton,
     TaskForm,
     Task,
-    Subtask
+    Subtask,
+    CreateBoard
 }

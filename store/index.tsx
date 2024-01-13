@@ -49,8 +49,21 @@ const boardSlice = createSlice({
             const next = state.boards[activeBoard].columns.findIndex((column:columnType)=>column.name===nextCol);
             const concernedTaskId = state.boards[activeBoard].columns[current].tasks.findIndex((task:taskType)=>task.title === taskName);
             const concernedTask = state.boards[activeBoard].columns[current].tasks[concernedTaskId]
-            state.boards[activeBoard].columns[next].tasks.push(concernedTask);
-        } 
+            if(currentCol !== nextCol){
+                state.boards[activeBoard].columns[next]?.tasks.push(concernedTask);
+                state.boards[activeBoard].columns[current].tasks = state.boards[activeBoard].columns[current]?.tasks.filter((task:taskType)=>task.title !== taskName);
+            } 
+        },
+        makeActive : (state, action)=>{
+            const {boardName} = action.payload;
+            state.boards = state.boards.map((board:boardType)=>{
+                board.isActive = false
+                if (board.name == boardName){
+                    board.isActive = true
+                }
+                return board
+            })
+        }
     }
 })
 

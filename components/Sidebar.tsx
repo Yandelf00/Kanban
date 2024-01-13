@@ -13,7 +13,7 @@ export default function Sidebar() {
             {hide === true ? 
                 ( <div onClick={show} className='w-[3rem] h-[3rem] z-[100] absolute bottom-5 left-0 
                 cursor-pointer hover:text-[rgba(99,95,199,255)] 
-                flex items-center justify-center rounded-r-3xl
+                flex items-center dark:bg-[rgba(43,44,55,255)] bg-[rgba(99,95,199,255)] justify-center rounded-r-3xl
                 hover:bg-[rgb(146,143,232)]'>
                     <svg width="16" height="11" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15.815 4.434A9.055 9.055 0 0 0 8 0 9.055 9.055 
