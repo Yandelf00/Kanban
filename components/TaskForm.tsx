@@ -29,7 +29,7 @@ export default function TaskForm() {
                 tasks: [...prevSubTasks.tasks, { id: newId }],
             } 
         })
-        // subtaskRefs.current.push(null);
+        
     }
     function deleteSubtasks(id : number){
         const updatedSubtasks = subTasks.tasks.filter((subtask)=>subtask.id !== id)
@@ -39,23 +39,17 @@ export default function TaskForm() {
                 tasks : updatedSubtasks
             }
         })
-        // subtaskRefs.current.pop();
+        
     }
-    function Essai() {
-        const liste:string[] = []
-        subtaskRefs.current.forEach((subtaskRef) => {
-            subtaskRef ? liste.push(subtaskRef?.value) : '';
-        });
-        console.log(liste)
-    } 
 
     function addTask(){
         dispatch(actions.addTask({
             title: title.current?.value || '',
             description: description.current?.value || '',
             status: selectRef.current?.value || '',
-            subtasks : subTasks.tasks || []
+            subtasks: subtaskRefs.current.map(ref => ref?.value).filter(Boolean)|| []
           }));
+        console.log(subtaskRefs.current.map(ref => ref?.value).filter(Boolean))
     }
     return (
         <div className='h-[100%] w-[90%] flex flex-col'>

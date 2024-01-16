@@ -23,7 +23,6 @@ export default function Board() {
                     <h3 className={``} >{board.name}</h3>
                 </div>
             ))}
-            <CreateBoard/>
         </div>
     );
 }

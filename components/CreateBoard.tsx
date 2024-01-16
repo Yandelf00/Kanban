@@ -1,32 +1,71 @@
 "use client"
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { actions } from '@/store'
 
 export default function CreateBoard() {
-    const [create, setCreate] = useState(false)
-
+    const boardNameRef = useRef<HTMLInputElement>(null)
+    const [cols, setCols] = useState(['Todo', 'Doing'])
+    const colsRef = useRef<Array<HTMLInputElement|null>>([])
+    const handleRemoveColumn = (index: number) => {
+        const updatedCols = cols.filter((_, i) => i !== index);
+        setCols(updatedCols);
+    };
+    const handleColumnChange = (index: number, value: string) => {
+        const updatedCols = [...cols];
+        updatedCols[index] = value;
+        setCols(updatedCols);
+    };
     return (
-        <>
-            {!create ? 
-            (<div onClick={()=>setCreate(!create)} className={` cursor-pointer pl-10 mb-5 h-12 flex font-semibold items-center w-[90%] rounded-r-full hover:text-[rgb(146,143,232)] hover:bg-[rgb(214,212,247)] dark:hover:bg-[rgb(255,255,255)]
-            dark:hover:text-[rgba(99,95,199,255)] text-[rgba(99,95,199,255)] transition-bg ease-in-out duration-200`}>
-                <h3 className={``} >+ Create New Board</h3>
-            </div>) 
-            : (
-            <>
-                <div className={` cursor-pointer pl-10 mb-5 h-12 flex font-semibold items-center w-[90%] rounded-r-full hover:text-[rgb(146,143,232)] hover:bg-[rgb(214,212,247)] dark:hover:bg-[rgb(255,255,255)]
-                    dark:hover:text-[rgba(99,95,199,255)] text-[rgba(99,95,199,255)] transition-bg ease-in-out duration-200`}>
-                    <h3 className={``} >+ Create New Board</h3>
-                </div>  
-                <div className='fixed z-[1000000] top-0 left-0 h-full w-full' style={{backgroundColor : 'rgba(0, 0, 0, 0.69)'}}>
+        <div className='h-full w-full flex justify-center '>
+            <div className='h-[18rem] w-[90%] flex flex-col'>
+                <h1 className='font-bold text-[1.2rem] mb-5'>Add new board</h1>
+                <label htmlFor="taskName" className="mb-2 text-black dark:text-white">
+                    Board Name
+                </label>
+                <input
+                ref={boardNameRef}
+                type="text"
+                id="taskName"
+                placeholder="e.g. Web Design"
+                className="focus:border-[rgba(99,95,199,255)] focus:outline-none transition-border ease-in-out duration-300
+                 p-2 border dark:border-[rgba(123,140,162,255)] dark:bg-[rgba(43,44,55,255)] mb-5 rounded-md "
+                />
+                <label htmlFor="taskName" className="mb-2 text-black dark:text-white">
+                    Board Columns
+                </label>
+                <div className='flex flex-col'>
+                    {cols.map((col:string, index:number)=>
+                    (   
+                        <div className='flex flex-row items-center' key={`col_${index}`}>
+                            <input
+                                type="text"
+                                id={`${index}_col`}
+                                onChange={(e) => handleColumnChange(index, e.target.value)}
+                                value={col}
+                                ref={(colref)=>(colsRef.current[index]=colref)}
+                                className="focus:border-[rgba(99,95,199,255)] h-[2.5rem] w-[23rem] focus:outline-none transition-border ease-in-out duration-300
+                                p-2 border dark:border-[rgba(123,140,162,255)] dark:bg-[rgba(43,44,55,255)] rounded-md "
+                            />
+                            <button
+                            onClick={()=>handleRemoveColumn(index)}
+                            type="button"
+                            className="ml-2 pt-3 p-2 font-bold text-[1.3rem]   
+                            text-[rgba(123,140,162,255)]  cursor-pointer"
+                            >
+                            x
+                        </button>
+                        </div>
+
+                    )
+                    )}
+                    <button className='h-[2.4rem] mb-5 mt-5 font-bold bg-[rgba(99,95,199,255)] text-white rounded-full'>+ Add New Column</button>
+                    <button className='h-[2.4rem] font-bold bg-[rgba(99,95,199,255)] text-white rounded-full'>Create New Board</button>
                 </div>
-                <div onClick={(e) => {
-                    e.stopPropagation();
-                }} className='bg-white flex flex-col justify-start items-start 
-                pt-7 pl-4 pr-4 pb-3 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                z-[1100] dark:bg-[rgba(43,44,55,255)] cursor-auto min-h-[17rem] w-[30rem] rounded-md'>
-                </div>
-            </>)}
-            
-        </>
+                
+
+            </div>
+
+        </div>
     )
 }

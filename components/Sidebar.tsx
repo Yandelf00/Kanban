@@ -1,19 +1,20 @@
 "use client"
 import React, { useState} from 'react'
 import { Answitch } from '.';
-import { Board } from '.';
+import { Board, CreateBoard } from '.';
 
 export default function Sidebar() {
     const [hide, setHide] = useState(true);
+    const [create, setCreate] = useState(false);
     function show(){
         setHide(prevHide => !prevHide);
     }
     return (
-        <div className='h-full'>
+        <div className={`h-full ${create ? 'z-40' : ''} `}>
             {hide === true ? 
                 ( <div onClick={show} className='w-[3rem] h-[3rem] z-[100] absolute bottom-5 left-0 
-                cursor-pointer hover:text-[rgba(99,95,199,255)] 
-                flex items-center dark:bg-[rgba(43,44,55,255)] bg-[rgba(99,95,199,255)] justify-center rounded-r-3xl
+                cursor-pointer hover:text-[rgba(99,95,199,255)] bg-[rgba(99,95,199,255)]
+                flex items-center dark:bg-[rgba(43,44,55,255)] justify-center rounded-r-3xl
                 hover:bg-[rgb(146,143,232)]'>
                     <svg width="16" height="11" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15.815 4.434A9.055 9.055 0 0 0 8 0 9.055 9.055 
@@ -25,12 +26,18 @@ export default function Sidebar() {
                         0 1.19-1.189H6.64a2.889 2.889 0 0 1 4.25 2.549Z" fill="#FFF"/></svg>
                 </div> ) : 
                 (<div className='h-full'>
-                    <div className='h-full fixed top-0 left-0 w-[17rem] bg-white dark:bg-[rgba(43,44,55,255)]'>
-                        <div className='w-full h-[85%] mt-[5rem] flex flex-col justify-between items-center'>
+                    <div className='h-[61rem] fixed bottom-0 left-0 w-[17rem] bg-white dark:bg-[rgba(43,44,55,255)]'>
+                        <div className='w-full h-[85%] flex flex-col justify-between items-center'>
                             <div className='w-full  h-[5rem]'>
                                 <Board/>
+                                <div className='w-[90%] rounded-r-full'>
+                                    <div onClick={()=>setCreate(!create)} className={` cursor-pointer pl-10 mb-5 h-12 flex font-semibold items-center w-[100%] rounded-r-full hover:text-[rgb(146,143,232)] hover:bg-[rgb(214,212,247)] dark:hover:bg-[rgb(255,255,255)]
+                                    dark:hover:text-[rgba(99,95,199,255)] text-[rgba(99,95,199,255)] transition-bg ease-in-out duration-200`}>
+                                        <h3 className={``} >+ Create New Board</h3>
+                                    </div>
+                                </div>
                             </div>
-                            <div className='h-10 w-[80%] mt-[20rem] rounded-md flex justify-center dark:bg-[rgba(32,33,44,255)] bg-[rgba(244,247,253,255)]'>
+                            <div className='h-10 w-[80%] rounded-md flex justify-center dark:bg-[rgba(32,33,44,255)] bg-[rgba(244,247,253,255)]'>
                                 <div className='h-full w-[60%]  flex justify-around items-center'>
                                     <svg width="19" height="19" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M9.167 15.833a.833.833 0 0 1 .833.834v.833a.833.833 
@@ -60,7 +67,7 @@ export default function Sidebar() {
                                 </div>
                             </div>
                         </div>
-                        <div onClick={show} className='w-[16rem] h-[3rem]  z-[100] absolute bottom-5 left-0 
+                        <div onClick={show} className='w-[16rem] mb-10 h-[3rem]  z-[100] absolute bottom-5 left-0 
                         cursor-pointer hover:bg-[rgb(225,224,255)]  dark:hover:bg-white hover:text-[rgba(99,95,199,255)] 
                         flex items-center justify-center transition-bg ease-in-out duration-100 rounded-r-3xl'>
                             <svg className='mr-5' width="18" height="16" xmlns="http://www.w3.org/2000/svg">
@@ -79,6 +86,19 @@ export default function Sidebar() {
                         </div>
                     </div>
                     <div className='w-[17rem] h-[full]'></div>
+                    {create ? (
+                    <>
+                        <div onClick={(e) => {
+                            e.stopPropagation();
+                        }} className='bg-white flex flex-col justify-start items-start 
+                        pt-7 pl-4 pr-4 pb-3 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                        z-[1100] dark:bg-[rgba(43,44,55,255)] cursor-auto min-h-[30rem] w-[30rem] rounded-md'>
+                            <CreateBoard/>
+                        </div>
+                        <div onClick={()=>setCreate(false)} className='fixed top-0 left-0 h-full w-full' style={{backgroundColor : 'rgba(0, 0, 0, 0.69)', transform: 'translateZ(0)'}}>
+                        </div>
+                    </>) :
+                    (<></>)}
                 </div>
                 )
             }
