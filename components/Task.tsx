@@ -61,7 +61,9 @@ export default function Task(props : taskProps) {
                     z-[1100] dark:bg-[rgba(43,44,55,255)] cursor-auto min-h-[17rem] w-[30rem] rounded-md'>
                         <div className='mb-5 w-full flex flex-row items-center justify-between'>
                             <h1 className='text-[black] dark:text-[white] font-semibold text-[1.3rem]'>{props.title}</h1>
-                            <h1 className='text-[black] dark:text-[white]'>svg</h1>
+                            <div className='cursor-pointer mr-3'>
+                            <svg width="5" height="20" xmlns="http://www.w3.org/2000/svg"><g fill="#828FA3" fillRule="evenodd"><circle cx="2.308" cy="2.308" r="2.308"/><circle cx="2.308" cy="10" r="2.308"/><circle cx="2.308" cy="17.692" r="2.308"/></g></svg>
+                            </div>
                         </div>
                         <div className='text-[rgba(123,140,162,255)] text-[0.9rem] mb-5'>
                             {task.description}

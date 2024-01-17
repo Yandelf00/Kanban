@@ -70,8 +70,8 @@ export default function CreateBoard() {
 
                     )
                     )}
-                    <button onClick={addCol} className='h-[2.4rem] mb-5 mt-5 font-bold bg-[rgba(99,95,199,255)] text-white rounded-full'>+ Add New Column</button>
-                    <button onClick={addBoard} className='h-[2.4rem] font-bold bg-[rgba(99,95,199,255)] text-white rounded-full'>Create New Board</button>
+                    <button onClick={addCol} className='h-[2.4rem] mb-5 mt-5 font-bold bg-[rgba(99,95,199,255)] text-white rounded-full hover:bg-[rgb(146,143,232)]'>+ Add New Column</button>
+                    <button onClick={addBoard} className='h-[2.4rem] font-bold bg-[rgba(99,95,199,255)] text-white rounded-full hover:bg-[rgb(146,143,232)]'>Create New Board</button>
                 </div>
                 
 
