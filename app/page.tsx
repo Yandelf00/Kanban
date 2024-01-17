@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="h-full w-full bg-[rgba(244,247,253,255)]  dark:bg-[rgba(32,33,44,255)] overflow-y-auto">
       <Navbar/>
-      <div className='flex flex-row'>
+      <div className='flex h-full flex-row'>
         <Sidebar/>
         <div className='ml-[5rem] h-full mt-[7rem]'>
           <Columns/>

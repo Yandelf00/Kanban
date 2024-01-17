@@ -26,7 +26,7 @@ export default function Sidebar() {
                         0 1.19-1.189H6.64a2.889 2.889 0 0 1 4.25 2.549Z" fill="#FFF"/></svg>
                 </div> ) : 
                 (<div className='h-full'>
-                    <div className='h-[61rem] fixed bottom-0 left-0 w-[17rem] bg-white dark:bg-[rgba(43,44,55,255)]'>
+                    <div className='h-[61rem] fixed top-[4.5rem] bottom-0 left-0 w-[17rem] bg-white dark:bg-[rgba(43,44,55,255)]'>
                         <div className='w-full h-[85%] flex flex-col justify-between items-center'>
                             <div className='w-full  h-[5rem]'>
                                 <Board/>
@@ -67,7 +67,7 @@ export default function Sidebar() {
                                 </div>
                             </div>
                         </div>
-                        <div onClick={show} className='w-[16rem] mb-10 h-[3rem]  z-[100] absolute bottom-5 left-0 
+                        <div onClick={show} className='w-[16rem] mb-[4.5rem] h-[3rem]  z-[100] absolute bottom-5 left-0 
                         cursor-pointer hover:bg-[rgb(225,224,255)]  dark:hover:bg-white hover:text-[rgba(99,95,199,255)] 
                         flex items-center justify-center transition-bg ease-in-out duration-100 rounded-r-3xl'>
                             <svg className='mr-5' width="18" height="16" xmlns="http://www.w3.org/2000/svg">

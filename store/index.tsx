@@ -29,7 +29,11 @@ const boardSlice = createSlice({
         addTask : (state, action)=>{
             const {title, description, subtasks, status} = action.payload;
             const activeboard = state.boards.findIndex((board)=>board.isActive);
-            const newTask : taskType = {title, description, status, subtasks : subtasks||[]}
+            let newTask : taskType = {title, description, status, subtasks:[]}
+            for(let i=0; i<subtasks.length; i++){
+                const subtask = {title : subtasks[i], isCompleted : false}
+                newTask.subtasks.push(subtask) 
+            }
             const column = state.boards[activeboard].columns.findIndex((column)=>column.name==status)
             state.boards[activeboard].columns[column].tasks.push(newTask)
         },
@@ -63,6 +67,19 @@ const boardSlice = createSlice({
                 }
                 return board
             })
+        },
+        addBoard : (state, action)=>{
+            const {boardName, colNames} = action.payload;
+            let colsToPush = []
+            for(let i=0; i<colNames.length; i++){
+                const colToPush = {name : colNames[i], tasks : []}
+                colsToPush.push(colToPush);
+            }
+            const boardToPush = {name : boardName, isActive : false, columns : colsToPush}
+            console.log(boardToPush)
+            console.log(boardName)
+            state.boards.push(boardToPush)
+            
         }
     }
 })

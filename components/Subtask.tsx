@@ -32,7 +32,6 @@ export default function Subtask(props : subtaskProps) {
                 <label className='flex flex-row'>
                     <input
                         type="checkbox"
-                        id="myCheckbox"
                         name="myCheckbox"
                         checked = {subtask.isCompleted}
                         onChange={changeCheck}

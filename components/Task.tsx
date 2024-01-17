@@ -70,8 +70,8 @@ export default function Task(props : taskProps) {
                             Subtasks ({doneSubtasks} of {totalSubtaks})
                         </div>
                         <div className='flex flex-col'>
-                            {task.subtasks.map((subtask : subtaskType)=>(
-                                <div key={subtask.title}>
+                            {task.subtasks.map((subtask : subtaskType, index : number)=>(
+                                <div key={`${index}___${subtask.title}`}>
                                     <Subtask column={props.column} title={props.title} subtaskTitle={subtask.title}/>
                                 </div>
                             ))}             
@@ -79,11 +79,12 @@ export default function Task(props : taskProps) {
                         <div className='text-[rgba(123,140,162,255)] mb-2 font-bold'>
                             current Status
                         </div>
-                        <label htmlFor="mySelect" className='mb-2'></label>
-                        <select ref={selectRef} onChange={addCount} id="mySelect" name="select" className= 'mb-5 w-[27rem] appearance-none focus:border-[rgba(99,95,199,255)] focus:outline-none transition-border ease-in-out duration-300 border h-[2.4rem] rounded-md hover:no-underline p-2 dark:border-[rgba(123,140,162,255)] dark:bg-[rgba(43,44,55,255)]'>
+                        {/* <label className='mb-2'></label> */}
+                        <div className='mb-2'></div>
+                        <select ref={selectRef} onChange={addCount} id={`mySelect_${props.title}`} name="select" className= 'mb-5 w-[27rem] appearance-none focus:border-[rgba(99,95,199,255)] focus:outline-none transition-border ease-in-out duration-300 border h-[2.4rem] rounded-md hover:no-underline p-2 dark:border-[rgba(123,140,162,255)] dark:bg-[rgba(43,44,55,255)]'>
                             <option value="currcolumn">{props.column}</option>
-                            {activeBoard.columns.filter((column:columnType)=>column.name!==props.column).map((column:columnType)=>(
-                                <option value={column.name}>{column.name}</option>
+                            {activeBoard.columns.filter((column:columnType)=>column.name!==props.column).map((column:columnType, index:number)=>(
+                                <option key={`${column.name}_${index}`} value={column.name}>{column.name}</option>
                             ))}
                         </select>
 

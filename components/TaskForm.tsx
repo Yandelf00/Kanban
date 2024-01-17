@@ -49,7 +49,7 @@ export default function TaskForm() {
             status: selectRef.current?.value || '',
             subtasks: subtaskRefs.current.map(ref => ref?.value).filter(Boolean)|| []
           }));
-        console.log(subtaskRefs.current.map(ref => ref?.value).filter(Boolean))
+        // console.log(subtaskRefs.current.map(ref => ref?.value).filter(Boolean))
     }
     return (
         <div className='h-[100%] w-[90%] flex flex-col'>

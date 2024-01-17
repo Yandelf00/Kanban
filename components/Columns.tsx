@@ -12,8 +12,8 @@ export default function Columns() {
     return (
         <div className='flex flex-row'>
             {
-                columns.map((column : columnType) => (
-                    <div key={column.name} className='mr-[2.5rem] text-[rgba(123,140,162,255)] w-[17rem] h-full flex flex-col'>
+                columns.map((column : columnType, index : number) => (
+                    <div key={`${index}_${column.name}`} className='mr-[2.5rem] text-[rgba(123,140,162,255)] w-[17rem] h-full flex flex-col'>
                         {column.name}
                         <Tasks columname={column.name} />
                     </div>

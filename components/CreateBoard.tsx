@@ -7,6 +7,7 @@ export default function CreateBoard() {
     const boardNameRef = useRef<HTMLInputElement>(null)
     const [cols, setCols] = useState(['Todo', 'Doing'])
     const colsRef = useRef<Array<HTMLInputElement|null>>([])
+    const dispatch = useDispatch()
     const handleRemoveColumn = (index: number) => {
         const updatedCols = cols.filter((_, i) => i !== index);
         setCols(updatedCols);
@@ -16,9 +17,19 @@ export default function CreateBoard() {
         updatedCols[index] = value;
         setCols(updatedCols);
     };
+    function addCol(){
+        setCols(prevCols=>[...prevCols, ''])
+    }
+    function addBoard(){
+        dispatch(actions.addBoard({
+            boardName : boardNameRef.current?.value || '',
+            colNames : colsRef.current.map((ref)=>ref?.value).filter(Boolean) || []
+        }))
+        console.log(boardNameRef.current?.value)
+    }
     return (
-        <div className='h-full w-full flex justify-center '>
-            <div className='h-[18rem] w-[90%] flex flex-col'>
+        <div className='min-h-full w-full flex justify-center '>
+            <div className='min-h-[18rem] w-[90%] flex flex-col'>
                 <h1 className='font-bold text-[1.2rem] mb-5'>Add new board</h1>
                 <label htmlFor="taskName" className="mb-2 text-black dark:text-white">
                     Board Name
@@ -59,8 +70,8 @@ export default function CreateBoard() {
 
                     )
                     )}
-                    <button className='h-[2.4rem] mb-5 mt-5 font-bold bg-[rgba(99,95,199,255)] text-white rounded-full'>+ Add New Column</button>
-                    <button className='h-[2.4rem] font-bold bg-[rgba(99,95,199,255)] text-white rounded-full'>Create New Board</button>
+                    <button onClick={addCol} className='h-[2.4rem] mb-5 mt-5 font-bold bg-[rgba(99,95,199,255)] text-white rounded-full'>+ Add New Column</button>
+                    <button onClick={addBoard} className='h-[2.4rem] font-bold bg-[rgba(99,95,199,255)] text-white rounded-full'>Create New Board</button>
                 </div>
                 
 
