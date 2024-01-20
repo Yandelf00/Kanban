@@ -13,6 +13,8 @@ import TaskForm from "./TaskForm";
 import Task from "./Task";
 import Subtask from "./Subtask";
 import CreateBoard from "./CreateBoard";
+import DeleteTask from "./DeleteTask";
+import EditTask from "./EditTask";
 export {
     Switch,
     Phrase,
@@ -28,5 +30,7 @@ export {
     TaskForm,
     Task,
     Subtask,
-    CreateBoard
+    CreateBoard,
+    DeleteTask,
+    EditTask
 }

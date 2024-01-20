@@ -76,10 +76,20 @@ const boardSlice = createSlice({
                 colsToPush.push(colToPush);
             }
             const boardToPush = {name : boardName, isActive : false, columns : colsToPush}
-            console.log(boardToPush)
-            console.log(boardName)
             state.boards.push(boardToPush)
             
+        },
+        deleteTask : (state, action)=>{
+            const {column, title} = action.payload;
+            const colname = state.boards.find((board : boardType)=>board.isActive===true)?.columns.findIndex((col:columnType)=>col.name===column)
+            
+            if(colname!==undefined){
+                const taskIndex = state.boards.find((board : boardType)=>board.isActive===true)?.columns[colname].tasks.findIndex((task:taskType)=>task.title===title)
+                if(taskIndex !== undefined)
+                {
+                    state.boards.find((board:boardType)=>board.isActive===true)?.columns[colname].tasks.splice(taskIndex, 1)
+                }    
+            }            
         }
     }
 })
