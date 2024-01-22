@@ -90,6 +90,57 @@ const boardSlice = createSlice({
                     state.boards.find((board:boardType)=>board.isActive===true)?.columns[colname].tasks.splice(taskIndex, 1)
                 }    
             }            
+        },
+        editTask : (state, action)=>{
+            const { colname, prevTitle, newTitle, descrp, subtasks } = action.payload;
+
+            const activeBoardIndex = state.boards.findIndex((board: boardType) => board.isActive === true);
+
+            if (activeBoardIndex === -1) {
+                return;
+            }
+
+            const activeBoard = state.boards[activeBoardIndex];
+
+            const colIndex = activeBoard.columns.findIndex((col: columnType) => col.name === colname);
+
+            if (colIndex === -1) {
+                return;
+            }
+
+            const taskIndex = activeBoard.columns[colIndex].tasks.findIndex((task: taskType) => task.title === prevTitle);
+
+            if (taskIndex === -1 || newTitle === undefined) {
+                return;
+            }
+
+            const existingSubtaskTitles = activeBoard.columns[colIndex].tasks[taskIndex].subtasks.map(subtask => subtask.title);
+
+            const updatedSubtasks = subtasks
+            .filter((subtaskTitle:string) => !existingSubtaskTitles.includes(subtaskTitle))
+            .map((subtaskTitle:string) => ({ title: subtaskTitle, isCompleted: false }));
+
+            const updatedSubtaskstwo = subtasks
+            .filter((subtaskTitle:string) => existingSubtaskTitles.includes(subtaskTitle))
+            .map((subtaskTitle:string) => ({ title: subtaskTitle, isCompleted: activeBoard.columns[colIndex].tasks[taskIndex].subtasks.find((subb:subtaskType)=>subb.title===subtaskTitle)?.isCompleted}));
+
+            const finalSubtask = updatedSubtasks.concat(updatedSubtaskstwo)
+
+            const updatedTasks = [...activeBoard.columns[colIndex].tasks];
+            updatedTasks[taskIndex] = { ...updatedTasks[taskIndex], title: newTitle, description: descrp, subtasks : finalSubtask };
+
+            const updatedColumns = [...activeBoard.columns];
+            updatedColumns[colIndex] = { ...updatedColumns[colIndex], tasks: updatedTasks };
+
+            const updatedBoards = [...state.boards];
+            updatedBoards[activeBoardIndex] = { ...activeBoard, columns: updatedColumns };
+
+            state.boards = updatedBoards;
+            
+        },
+        deleteBoard : (state, action)=>{
+            const boardindex = state.boards.findIndex((board:boardType)=>board.isActive===true)
+            state.boards.splice(boardindex, 1)
         }
     }
 })

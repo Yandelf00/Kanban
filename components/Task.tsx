@@ -137,7 +137,7 @@ export default function Task(props : taskProps) {
                 }} className='fixed z-[900] top-0 left-0 h-full w-full' style={{backgroundColor : 'rgba(0, 0, 0, 0.69)'}}>
                 <div onClick={(e) => {
                         e.stopPropagation();
-                    }} className='bg-white flex justify-center items-start pt-7 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[1100] dark:bg-[rgba(43,44,55,255)] min-h-[45rem] w-[35rem] rounded-md'>
+                    }} className='bg-white flex justify-center items-start pt-7 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[1100] dark:bg-[rgba(43,44,55,255)] min-h-[35rem] pb-3 w-[35rem] rounded-md'>
                         <EditTask title={props.title} column={props.column}/>
                 </div>
             </div>) : 
