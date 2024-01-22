@@ -1,6 +1,14 @@
-import React from 'react'
+"use client"
+import React, {useState} from 'react'
 import { Bouton } from '.'
+import { useDispatch } from 'react-redux'
+import { actions } from '@/store'
 export default function Navbar() {
+  const [edBoard, setedBoard] = useState(false)
+  const dispatch = useDispatch()
+  function deletetheBoard(){
+    dispatch(actions.deleteBoard({}))
+  }
   return (
     <div className='fixed top-0 z-30 w-full flex flex-row justify-between h-[5rem] bg-[rgba(255,255,255,255)] dark:bg-[rgba(43,44,55,255)]'>
         <div className='h-full w-[27rem] flex justify-between ml-5 mt-1'>
@@ -12,10 +20,16 @@ export default function Navbar() {
         </div>
         <div className='h-full w-1/5 flex justify-end mr-5 mt-4'>
             <Bouton/>
-            <div className='mt-3 cursor-pointer'>
+            <div onClick={()=>setedBoard(!edBoard)} className='mt-3 cursor-pointer'>
             <svg width="5" height="20" xmlns="http://www.w3.org/2000/svg"><g fill="#828FA3" fillRule="evenodd"><circle cx="2.308" cy="2.308" r="2.308"/><circle cx="2.308" cy="10" r="2.308"/><circle cx="2.308" cy="17.692" r="2.308"/></g></svg>
             </div>
         </div>
+        {edBoard ? (<></>) :
+         (<>
+            <div className='fixed flex justify-center items-center right-10 h-20 w-40 rounded-md top-[4.5rem] bg-white shadow-md shadow-gray-500 dark:bg-[rgba(32,33,44,255)]'>
+                <div onClick={deletetheBoard} className='text-red-500 font-semibold text-[1.2rem] cursor-pointer hover:text-red-400'>delete the board</div>
+            </div>
+         </>)}
     </div>
   )
 }
